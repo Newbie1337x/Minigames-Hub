@@ -1,3 +1,4 @@
+package Games.Snake;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,6 +12,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     ArrayList<Tile> snakeBody;
     Tile food;
     Random rand;
+
 
     Timer gameLoop;
     int velocityX;
@@ -28,7 +30,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-    SnakeGame(int boardWidth, int boardHeight) {
+    public SnakeGame(int boardWidth, int boardHeight) {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         setPreferredSize(new Dimension(this.boardWidth, this.boardHeight));
@@ -105,6 +107,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         if (collision(snakeHead, food)) {
             snakeBody.add(0, previousHeadPosition);
             placeFood();
+            SoundManager.play("eat");
         } else if (!snakeBody.isEmpty()) {
             // Mover el cuerpo
             snakeBody.add(0, previousHeadPosition);
@@ -177,4 +180,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
     }
+
+
 }
